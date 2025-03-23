@@ -1,30 +1,26 @@
-try:
-    print("Введите ваш возраст.")
-    age = int(input())
+def choose_yes_no(question):
+    while True:
+        response = input(question).strip().lower()
+        if response in {"да", "нет"}:
+            return response
+        print("Пожалуйста, выберите 'Да' или 'Нет'.")
 
-    print("""\nЯвляетесь ли вы гражданином РФ? 1 - Да2 - Нет""")
-    citizenship = int(input())
+age = int(input("Введите ваш возраст: "))
 
-    if citizenship == 1:
-        print("Вы выбрали 'Да'\n")
-    elif citizenship == 2:
-        print("Вы выбрали 'Нет'\n")
-    else:
-        print("Выберите 1 или 2")
+citizenship = choose_yes_no("\nЯвляетесь ли вы гражданином РФ? Напишите: Да или Нет ").capitalize()
+if citizenship == "Да":
+    print("Вы выбрали 'Да'\n")
+else:
+    print("Вы выбрали 'Нет'\n")
 
-    print("""\nЕсть ли у вас судимости либо другие ограничения для участия в голосовании на выборах?1 - Да2 - Нет""")
+limitations = choose_yes_no("\nЕсть ли у вас судимости либо другие ограничения для участия "
+                            "в голосовании на выборах? Напишите: Да или Нет ").capitalize()
+if limitations == "Да":
+    print("Вы выбрали 'Да'")
+else:
+    print("Вы выбрали 'Нет'")
 
-    limitations = int(input())
-    if limitations == 1:
-        print("Вы выбрали 'Да'")
-    elif limitations == 2:
-        print("Вы выбрали 'Нет'")
-    else:
-        print("Выберите 1 или 2")
-
-    if age >= 18 and citizenship == 1 and limitations == 2:
-        print("\nВы можете участвовать в голосовании.")
-    else:
-        print("\nВы не можете участвовать в голосовании.")
-except ValueError:
-    print("Ошибка. Введите, пожалуйста, ответ цифрами.")
+if age >= 18 and citizenship == "Да" and limitations == "Нет":
+    print("\nВы можете участвовать в голосовании.")
+else:
+    print("\nВы не можете участвовать в голосовании.")
